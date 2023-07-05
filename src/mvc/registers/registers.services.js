@@ -22,7 +22,7 @@ const getAllRegisters = (req, res) => {
 }
 const getRegisters = (req, res) => {
     const station = req.params.station
-    registersControllers.getAllRegisters(station)
+    registersControllers.getRegisters(station)
         .then((response) => {
             res.status(200).json(response)
         })
@@ -44,9 +44,21 @@ const getRegistersByDate = (req, res) => {
         })
 }
 
+const getLast = (req, res) => {
+    const station = req.params.station
+    registersControllers.getLast(station)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({ message: err.message })
+        })
+}
+
 module.exports = {
     createRegister,
     getAllRegisters,
     getRegisters,
-    getRegistersByDate
+    getRegistersByDate,
+    getLast
 }

@@ -1,5 +1,6 @@
 const cors = require('cors')
-const registersRouter=require('./mvc/registros/registers.routes')
+const registersRouter = require('./mvc/registers/registers.routes')
+const stationsRouter = require('./mvc/stations/stations.routes')
 const initModels = require('./mvc/initModels')
 
 const db = require('./dabase')
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1/registers', registersRouter)
+app.use('/api/v1/stations', stationsRouter)
 
 app.listen(port, () => {
     console.log(`server started at ${port}`)

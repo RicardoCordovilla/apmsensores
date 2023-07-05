@@ -6,5 +6,6 @@ router.post('/', registersServices.createRegister)
 router.get('/', registersServices.getAllRegisters)
 router.get('/:station', registersServices.getRegisters)
 router.get('/:station/date', registersServices.getRegistersByDate)
+router.get('/:station/last', registersServices.getLast)
 
 module.exports = router

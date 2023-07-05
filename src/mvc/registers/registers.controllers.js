@@ -16,7 +16,9 @@ const getAllRegisters = async () => {
 }
 const getRegisters = async (station) => {
     const data = await Registers.findAll({
-        where: { station }
+        where: {
+            station
+        }
     })
     return data
 }
@@ -35,9 +37,22 @@ const getRegistersByDate = async (startDate, endDate, station) => {
     return data
 }
 
+const getLast = async (station) => {
+    const data = await Registers.findOne({
+        limit: 1,
+        where: {
+            station,
+            createdAt: { [Op.not]: null }
+        },
+        order: [['createdAt', 'DESC']]
+    })
+    return data
+}
+
 module.exports = {
     createRegister,
     getAllRegisters,
     getRegisters,
+    getLast,
     getRegistersByDate
 }
