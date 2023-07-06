@@ -1,10 +1,30 @@
 const registersControllers = require('./registers.controllers')
 
+const { Server } = require('socket.io')
+const io = new Server({
+    cors: { origin: "*" }
+})
+
+io.listen(3500)
+
+// io.on("connection", (socket) => {
+//     console.log("somone new conection")
+
+//     socket.on("disconnect", () => {
+//         console.log("someone left")
+//     })
+// })
+
+
+
 const createRegister = (req, res) => {
     const { station, values } = req.body
+    console.log('create')
     registersControllers.createRegister({ station, values })
         .then(data => {
+            io.emit("update", "new")
             res.status(200).json(data)
+
         })
         .catch((err) => {
             res.status(404).json({ message: err.message })
