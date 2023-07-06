@@ -25,7 +25,7 @@ const { port } = require('./config')
 app.get('/', (req, res) => {
     res.status(200).json({
         message: 'OK',
-        users: `localhost:${port}/api/v1`
+        users: `localhost:${socketport}/api/v1`
     })
 })
 

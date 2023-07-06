@@ -1,6 +1,7 @@
 require('dotenv').config()//solo queremos que se ejecute el config
 
 const config = {
+    socketport: process.env.SOCKETPORT || 3500,
     port: process.env.PORT || 9000, //9000 si no existe 
     nodeEnv: process.env.NODE_ENV || 'development', //desarrollo, testing, produccion
     jwtSecret: process.env.JWT_SECRET,

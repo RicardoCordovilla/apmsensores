@@ -1,3 +1,4 @@
+const config = require('../../config')
 const registersControllers = require('./registers.controllers')
 
 const { Server } = require('socket.io')
@@ -5,7 +6,7 @@ const io = new Server({
     cors: { origin: "*" }
 })
 
-io.listen(3500)
+io.listen(config.socketport)
 
 // io.on("connection", (socket) => {
 //     console.log("somone new conection")
