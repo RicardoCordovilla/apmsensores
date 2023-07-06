@@ -6,7 +6,7 @@ const registersControllers = require('./registers.controllers')
 
 const { Server } = require('socket.io')
 const io = new Server({
-    cors: { origin: "http://127.0.0.1:5173/" }
+    cors: { origin: "*" }
 })
 io.listen(3500)
 
