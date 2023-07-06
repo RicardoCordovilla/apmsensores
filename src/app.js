@@ -26,9 +26,10 @@ const { port } = require('./config')
 app.get('/', (req, res) => {
     res.status(200).json({
         message: 'OK',
-        users: `localhost:${socketport}/api/v1`
+        users: `localhost:${port}/api/v1`
     })
 })
+
 
 app.use('/api/v1/registers', registersRouter)
 app.use('/api/v1/stations', stationsRouter)

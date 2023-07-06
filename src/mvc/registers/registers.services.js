@@ -1,17 +1,27 @@
+const { response } = require('express')
 const config = require('../../config')
 const registersControllers = require('./registers.controllers')
-// const { io, socket } = require('../../app')
+
+
 
 const { Server } = require('socket.io')
 const io = new Server({
     cors: { origin: "*" }
 })
-
 io.listen(3500)
 
+let socket1
+
 io.on("connection", (socket) => {
-    console.log("someone conect")
+    console.log("someone conect: ", socket.id)
     // io.emit("update", "new reg")
+    // response.json({ conectado: socket.id })
+    socket1 = socket
+    socket.on('join', room => {
+        console.log('join: ' + room)
+        socket.join(room)
+    })
+    // socket.emit('update', "new reg")
 })
 
 const createRegister = (req, res) => {
@@ -20,7 +30,8 @@ const createRegister = (req, res) => {
     registersControllers.createRegister({ station, values })
         .then(data => {
             res.status(200).json(data)
-            io.emit("update", 'new reg')
+            // io.emit("update", 'new reg')
+            socket1.emit('update', "new reg")
         })
         .catch((err) => {
             res.status(404).json({ message: err.message })
@@ -70,6 +81,7 @@ const getLast = (req, res) => {
             res.status(400).json({ message: err.message })
         })
 }
+
 
 module.exports = {
     createRegister,
