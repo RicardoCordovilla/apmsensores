@@ -1,35 +1,26 @@
 const config = require('../../config')
 const registersControllers = require('./registers.controllers')
-
+// const { io, socket } = require('../../app')
 
 const { Server } = require('socket.io')
-const http = require('http')
+const io = new Server({
+    cors: { origin: "*" }
+})
 
-const express = require('express')
-const app = express()
-const server = http.createServer(app)
-const io = new Server(server, { cors: { origin: '*' } })
+io.listen(3500)
 
-
-io.listen(config.socketport)
-
-// io.on("connection", (socket) => {
-//     console.log("somone new conection")
-
-//     socket.on("disconnect", () => {
-//         console.log("someone left")
-//     })
-// })
-
-
+io.on("connection", (socket) => {
+    console.log("someone conect")
+    // io.emit("update", "new reg")
+})
 
 const createRegister = (req, res) => {
     const { station, values } = req.body
     console.log('create')
     registersControllers.createRegister({ station, values })
         .then(data => {
-            io.emit("update", "new")
             res.status(200).json(data)
+            io.emit("update", 'new reg')
         })
         .catch((err) => {
             res.status(404).json({ message: err.message })

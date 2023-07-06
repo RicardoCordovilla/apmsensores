@@ -3,7 +3,7 @@ const io = new Server({
     cors: { origin: "*" }
 })
 
-io.listen(3500)
+// io.listen(3500)
 
 io.on("connection", (socket) => {
     console.log("somone new conection")

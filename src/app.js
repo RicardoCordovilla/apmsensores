@@ -3,10 +3,11 @@ const registersRouter = require('./mvc/registers/registers.routes')
 const stationsRouter = require('./mvc/stations/stations.routes')
 const initModels = require('./mvc/initModels')
 
-
 const db = require('./dabase')
 const express = require('express')
 const app = express()
+
+
 
 app.use(express.json())
 app.use(cors('*'))
