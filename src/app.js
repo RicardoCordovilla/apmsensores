@@ -10,7 +10,13 @@ const app = express()
 
 
 app.use(express.json())
-app.use(cors('*'))
+
+const corsOption = {
+    credentials: true,
+    origin: '*'
+}
+
+app.use(cors(corsOption));
 
 db.authenticate()
     .then(() => { console.log('DB authenticated') })
