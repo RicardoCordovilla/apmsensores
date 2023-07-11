@@ -29,10 +29,10 @@ const user = { name: 'Ricardo2', ci: 'ef614681-57cb-4964-984f-6f8efd68eded', mes
 //     // socket.emit('update', "new reg")
 // })
 
-const createRegister = (req, res) => {
+const createRegister = async (req, res) => {
     const { station, values } = req.body
     console.log('create')
-    registersControllers.createRegister({ station, values })
+    await registersControllers.createRegister({ station, values })
         .then(data => {
             res.status(200).json(data)
             socket.emit('auth', user)
