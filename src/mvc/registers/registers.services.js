@@ -1,13 +1,12 @@
-const { response } = require('express')
 const config = require('../../config')
 const registersControllers = require('./registers.controllers')
-const io = require('socket.io-client')
+// const io = require('socket.io-client')
 
-const socket = io(config.socketurl)
-console.log(config.socketurl)
+// const socket = io(config.socketurl)
+// console.log(config.socketurl)
 
 
-const user = { name: 'Ricardo2', ci: 'ef614681-57cb-4964-984f-6f8efd68eded', mesa: '1', pedidos: [] }
+// const user = { name: 'Ricardo2', ci: 'ef614681-57cb-4964-984f-6f8efd68eded', mesa: '1', pedidos: [] }
 
 // const { Server } = require('socket.io')
 // const io = new Server({
@@ -35,7 +34,7 @@ const createRegister = async (req, res) => {
     await registersControllers.createRegister({ station, values })
         .then(data => {
             res.status(200).json(data)
-            socket.emit('auth', user)
+            // socket.emit('auth', user)
         })
         .catch((err) => {
             res.status(404).json({ message: err.message })
