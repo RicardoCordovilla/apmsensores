@@ -9,6 +9,6 @@ router.get('/:station/date', registersServices.getRegistersByDate)
 router.get('/:station/last', registersServices.getLast)
 
 
-// router.delete('/delete/:id', registersServices.deleteRegister)
+router.delete('/delete/:id', registersServices.deleteRegister)
 
 module.exports = router
