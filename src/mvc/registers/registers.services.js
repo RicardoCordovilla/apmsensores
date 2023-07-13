@@ -85,11 +85,24 @@ const getLast = (req, res) => {
         })
 }
 
+const deleteRegister = (req, res) => {
+    const id = req.params.id
+    registersControllers.deleteRegister(id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            res.status(400).json({ message: err.message })
+        })
+}
+
+
 
 module.exports = {
     createRegister,
     getAllRegisters,
     getRegisters,
     getRegistersByDate,
-    getLast
+    getLast,
+    deleteRegister
 }

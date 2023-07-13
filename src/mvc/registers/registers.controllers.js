@@ -37,14 +37,22 @@ const getRegistersByDate = async (startDate, endDate, station) => {
     return data
 }
 
-const getLast = async (station) => {
+const getLast = async (id) => {
     const data = await Registers.findOne({
         limit: 1,
         where: {
-            station,
+            id,
             createdAt: { [Op.not]: null }
         },
         order: [['createdAt', 'DESC']]
+    })
+    return data
+}
+
+const deleteRegister = async (id) => {
+    const data = await Registers.destroy({
+        where: { id },
+        force: true
     })
     return data
 }
@@ -54,5 +62,6 @@ module.exports = {
     getAllRegisters,
     getRegisters,
     getLast,
-    getRegistersByDate
+    getRegistersByDate,
+    deleteRegister
 }
