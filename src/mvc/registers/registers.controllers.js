@@ -37,11 +37,11 @@ const getRegistersByDate = async (startDate, endDate, station) => {
     return data
 }
 
-const getLast = async (id) => {
+const getLast = async (station) => {
     const data = await Registers.findOne({
         limit: 1,
         where: {
-            id,
+            station,
             createdAt: { [Op.not]: null }
         },
         order: [['createdAt', 'DESC']]
