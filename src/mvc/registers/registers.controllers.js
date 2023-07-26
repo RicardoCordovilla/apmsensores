@@ -25,7 +25,13 @@ const getRegisters = async (station) => {
     const data = await Registers.findAll({
         where: {
             station
-        }
+        },
+        include: [
+            {
+                model: Stations,
+                as: "station"
+            }
+        ]
     })
     return data
 }
