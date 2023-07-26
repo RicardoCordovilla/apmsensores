@@ -1,5 +1,6 @@
 const { Op } = require("sequelize")
 const Registers = require("./registers.model")
+const Stations = require("../stations/stations.model")
 
 const createRegister = async (data) => {
     const newRegister = await Registers.create({
@@ -11,6 +12,12 @@ const createRegister = async (data) => {
 
 const getAllRegisters = async () => {
     const data = await Registers.findAll({
+        include: [
+            {
+                model: Stations,
+                as: "station"
+            }
+        ]
     })
     return data
 }
