@@ -1,32 +1,11 @@
 const config = require('../../config')
 const registersControllers = require('./registers.controllers')
-// const io = require('socket.io-client')
+const io = require('socket.io-client')
 
-// const socket = io(config.socketurl)
-// console.log(config.socketurl)
+const socket = io(config.socketurl)
 
 
-// const user = { name: 'Ricardo2', ci: 'ef614681-57cb-4964-984f-6f8efd68eded', mesa: '1', pedidos: [] }
 
-// const { Server } = require('socket.io')
-// const io = new Server({
-//     cors: { origin: "*" }
-// })
-// io.listen(3500)
-
-// let socket1
-
-// io.on("connection", (socket) => {
-//     console.log("someone conect: ", socket.id)
-//     // io.emit("update", "new reg")
-//     // response.json({ conectado: socket.id })
-//     socket1 = socket
-//     socket.on('join', room => {
-//         console.log('join: ' + room)
-//         socket.join(room)
-//     })
-//     // socket.emit('update', "new reg")
-// })
 
 const createRegister = async (req, res) => {
     const { station, values } = req.body
@@ -34,7 +13,7 @@ const createRegister = async (req, res) => {
     await registersControllers.createRegister({ station, values })
         .then(data => {
             res.status(200).json(data)
-            // socket.emit('auth', user)
+            // socket.emit('auth', "update")
         })
         .catch((err) => {
             res.status(404).json({ message: err.message })

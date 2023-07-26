@@ -12,6 +12,10 @@ const Stations = db.define('stations', {
         type: DataTypes.TEXT,
         allowNull: false
     },
+    alias: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
     enable: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
