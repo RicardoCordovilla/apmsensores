@@ -22,7 +22,7 @@ const getStations = (req, res) => {
 }
 
 const getStation = (req, res) => {
-    stationsControllers.getStations(req.params.station)
+    stationsControllers.getStation(req.params.station)
         .then((response) => {
             res.status(200).json(response)
         })
