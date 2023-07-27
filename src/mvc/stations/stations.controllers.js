@@ -20,7 +20,7 @@ const getStations = async () => {
 
 const getStation = async (stationtitle) => {
     const data = await Stations.findOne({
-        where: { stationtitle }
+        where: { title: stationtitle }
     })
     return data
 }
