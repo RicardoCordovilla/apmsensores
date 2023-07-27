@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize")
-const db=require('../../dabase')
+const db = require('../../dabase')
+const Stations = require("../stations/stations.model")
 
 const Registers = db.define('registers', {
     id: {
@@ -8,9 +9,9 @@ const Registers = db.define('registers', {
         primaryKey: true,
         allowNull: false
     },
-    station: {
+    stationtitle: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
     },
     values: {
         type: DataTypes.JSON,

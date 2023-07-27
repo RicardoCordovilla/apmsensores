@@ -4,6 +4,7 @@ const Stations = require('./stations.model')
 const createStation = async (data) => {
     const newRegister = await Stations.create({
         title: data.title,
+        alias: data.alias
     })
     return newRegister
 }
@@ -17,7 +18,15 @@ const getStations = async () => {
     return data
 }
 
+const getStation = async (stationtitle) => {
+    const data = await Stations.findOne({
+        where: { stationtitle }
+    })
+    return data
+}
+
 module.exports = {
     createStation,
-    getStations
+    getStations,
+    getStation
 }

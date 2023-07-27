@@ -1,9 +1,5 @@
 const config = require('../../config')
 const registersControllers = require('./registers.controllers')
-const io = require('socket.io-client')
-
-const socket = io(config.socketurl)
-
 
 
 

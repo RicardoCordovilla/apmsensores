@@ -1,8 +1,8 @@
 const stationsControllers = require('./stations.controllers')
 
 const createStation = (req, res) => {
-    const { title } = req.body
-    stationsControllers.createStation({ title })
+    const { title, alias } = req.body
+    stationsControllers.createStation({ title, alias })
         .then(data => {
             res.status(200).json(data)
         })
@@ -21,7 +21,19 @@ const getStations = (req, res) => {
         })
 }
 
+const getStation = (req, res) => {
+    stationsControllers.getStations(req.params.station)
+        .then((response) => {
+            res.status(200).json(response)
+        })
+        .catch((err) => {
+            res.status(404).json({ message: err.message })
+        })
+}
+
+
 module.exports = {
     createStation,
-    getStations
+    getStations,
+    getStation
 }

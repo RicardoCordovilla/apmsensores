@@ -4,7 +4,7 @@ const Stations = require("../stations/stations.model")
 
 const createRegister = async (data) => {
     const newRegister = await Registers.create({
-        station: data.station,
+        stationtitle: data.station,
         values: data.values
     })
     return newRegister
@@ -12,35 +12,35 @@ const createRegister = async (data) => {
 
 const getAllRegisters = async () => {
     const data = await Registers.findAll({
-        include: [
-            {
-                model: Stations,
-                as: "station"
-            }
-        ]
+        // include: [
+        //     {
+        //         model: Stations,
+        //         as: "station"
+        //     }
+        // ]
     })
     return data
 }
-const getRegisters = async (station) => {
+const getRegisters = async (stationtitle) => {
     const data = await Registers.findAll({
         where: {
-            station
+            stationtitle
         },
-        include: [
-            {
-                model: Stations,
-                as: "station"
-            }
-        ]
+        // include: [
+        //     {
+        //         model: Stations,
+        //         as: "station"
+        //     }
+        // ]
     })
     return data
 }
 
-const getRegistersByDate = async (startDate, endDate, station) => {
+const getRegistersByDate = async (startDate, endDate, stationtitle) => {
     const data = await Registers.findAll(
         {
             where: {
-                station,
+                stationtitle,
                 createdAt: {
                     [Op.between]: [new Date(startDate), new Date(endDate)]
                 }
@@ -50,11 +50,11 @@ const getRegistersByDate = async (startDate, endDate, station) => {
     return data
 }
 
-const getLast = async (station) => {
+const getLast = async (stationtitle) => {
     const data = await Registers.findOne({
         limit: 1,
         where: {
-            station,
+            stationtitle,
             createdAt: { [Op.not]: null }
         },
         order: [['createdAt', 'DESC']]
